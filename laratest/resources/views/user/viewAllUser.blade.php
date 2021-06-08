@@ -14,17 +14,22 @@
 			<td>User name</td>
             <td>Password</td>
             <td>Email</td>
-            <td>Type</td>
+            
+
 		</tr>
 
     @foreach ($userlist as $users) 
     
             <tr>
-            <td>{{$users[0]}}</td>
-			<td>{{$users[1]}}</td>
-            <td>{{$users[2]}}</td>
-            <td>{{$users[3]}}</td>
-            <td>{{$users[4]}}</td>
+            <td>{{$users['id']}}</td>
+			<td>{{$users['uname']}}</td>
+            <td>{{$users['password']}}</td>
+            
+            <td>
+                <a href="/user/details/{{$users['id']}}"> Details</a> |
+                <a href="/user/edit/{{$users['id']}}"> Edit</a> |
+                <a href="/user/delete/{{$users['id']}}"> Delete</a>
+            </td>
 		</tr>
      @endforeach
       		

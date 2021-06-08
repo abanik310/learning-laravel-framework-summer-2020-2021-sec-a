@@ -20,6 +20,14 @@ Route::get('/user/createUser', 'UserController@create');
 
 Route::get('/user/viewAllUser', 'UserController@view');
 
+Route::get('/user/details/{id}', 'UserController@details');
+
+Route::get('/user/edit/{id}', 'UserController@edit');
+Route::get('/user/edit/{id}', 'UserController@update');
+
+Route::get('/user/delete/{id}', 'UserController@delete');
+Route::get('/user/delete/{id}', 'UserController@destroy');
+
 
 
 Route::get('/register', function () {
