@@ -5,7 +5,10 @@
 </head>
 <body>
 	<form method="post">
+		{{-- {{csrf_field()}} --}}
+		@csrf
 	<table>
+		
 		<tr>
 			<td>Name</td>
 			<td><input type="text" name="uname"></td>
@@ -21,7 +24,7 @@
 
 	</table>
 	</form>
-	<a href="/register">Signup</a>
-
+	<a href="/register">Signup</a><br><br>
+	{{session('msg')}}
 </body>
 </html>

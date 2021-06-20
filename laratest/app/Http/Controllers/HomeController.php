@@ -6,12 +6,24 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
         
         //return view('home')->with('id','123');
-        return view('home')
-        ->withId('123')
-        ->withName('Anik');
+        // return view('home')
+        // ->withId('123')
+        // ->withName('Anik');
+        $id = '123';
+        $name = $req->session()->get('uname');
+        if($req->session()->has('uname'))
+        {
+            return view('home',compact('id','name'));
+        }
+        else
+        {
+            $req->session()->flash('msg','Invalid Username or Password!');
+            return redirect ('/login');
+        }
+        
     }
 }

@@ -16,13 +16,20 @@ class LoginController extends Controller
         //return view('login');
         //dd($req);
         //echo "username : ".$req->uname. "<br> Password : ".$req->password;
+        $req->session()->put('uname', $req->uname);
         
         if($req->uname == $req->password)
         {
             //echo "Valid User";
             return redirect('/home');
         }
-        else echo "Invalid User";
+        else 
+        {
+            $req->session()->flash('msg','Invalid Username or Password!');
+            return redirect('login');
+        }
+
+        
     }
 }
 

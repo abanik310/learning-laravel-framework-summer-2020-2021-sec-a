@@ -6,26 +6,50 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function create()
+    public function create(Request $req)
     {
-        return view('user.create');
+        $req->session()->put('uname', $req->uname);
+
+        if($req->session()->has('uname'))
+        {
+            return redirect('/user/create');
+        }
+        else
+        {
+            $req->session()->flash('msg','Invalid Username or Password!');
+            return redirect ('/login');
+        }
+       
     }
 
-    public function details($id)
+    public function details($id,Request $req)
     {
-        $user = $this->getUserList();
-        $usr = '';
 
-        foreach($user as $u)
+        if($req->session()->has('uname'))
         {
-            if($u['id'] == $id)
+            $user = $this->getUserList();
+            $usr = '';
+    
+            foreach($user as $u)
             {
-                $user = $u;
-                break;
+                if($u['id'] == $id)
+                {
+                    $user = $u;
+                    break;
+                }
+            
+            return view('user.details')->with('user',$user);
             }
         }
-        //$user = ['id'=>1,'uname'=>'AB Anik','password'=>'123','email'=>'anik@gmail.com','type'=>'Admin'];
-        return view('user.details')->with('user',$user);
+        
+        else
+        {
+            $req->session()->flash('msg','Invalid Username or Password!');
+            return redirect ('/login');
+        }
+
+
+        
     }
 
     public function edit($id)
@@ -48,11 +72,22 @@ class UserController extends Controller
         echo $id;
     }
 
-    public function view()
+    public function view(Request $req)
     {
-        $users = $this->getUserList();
+        
+
+        if($req->session()->has('uname'))
+        {
+            $users = $this->getUserList();
         
         return view ('user.viewAllUser')->with('userlist',$users);
+            //return view('home',compact('id','name'));
+        }
+        else
+        {
+            $req->session()->flash('msg','Invalid Username or Password!');
+            return redirect ('/login');
+        }
     }
 
     public function getUserList()

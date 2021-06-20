@@ -16,11 +16,11 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/logout', ['uses'=> 'LogoutController@index']);
 
-Route::get('/user/createUser', 'UserController@create');
+Route::get('/user/createUser', 'UserController@create')->name('user.create');
 
-Route::get('/user/viewAllUser', 'UserController@view');
+Route::get('/user/viewAllUser', 'UserController@view')->name('user.viewAllUser');
 
-Route::get('/user/details/{id}', 'UserController@details');
+Route::get('/user/details/{id}', 'UserController@details')->name('user.details');
 
 Route::get('/user/edit/{id}', 'UserController@edit');
 Route::get('/user/edit/{id}', 'UserController@update');
