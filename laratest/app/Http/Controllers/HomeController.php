@@ -15,15 +15,8 @@ class HomeController extends Controller
         // ->withName('Anik');
         $id = '123';
         $name = $req->session()->get('uname');
-        if($req->session()->has('uname'))
-        {
-            return view('home',compact('id','name'));
-        }
-        else
-        {
-            $req->session()->flash('msg','Invalid Username or Password!');
-            return redirect ('/login');
-        }
+        return view('home',compact('id','name'));
+        
         
     }
 }

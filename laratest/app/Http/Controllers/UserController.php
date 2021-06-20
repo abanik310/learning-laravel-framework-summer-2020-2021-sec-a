@@ -8,18 +8,18 @@ class UserController extends Controller
 {
     public function create(Request $req)
     {
-        $req->session()->put('uname', $req->uname);
+        // $req->session()->put('uname', $req->uname);
 
-        if($req->session()->has('uname'))
-        {
-            return redirect('/user/create');
-        }
-        else
-        {
-            $req->session()->flash('msg','Invalid Username or Password!');
-            return redirect ('/login');
-        }
-       
+        // if($req->session()->has('uname'))
+        // {
+            
+        // }
+        // else
+        // {
+        //     $req->session()->flash('msg','Invalid Username or Password!');
+        //     return redirect ('/login');
+        // }
+       return view('user.create');
     }
 
     public function details($id,Request $req)
