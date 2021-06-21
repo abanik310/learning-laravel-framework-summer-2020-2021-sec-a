@@ -11,11 +11,11 @@
 		
 		<tr>
 			<td>Name</td>
-			<td><input type="text" name="uname"></td>
+			<td><input type="text" name="uname" value="{{old('uname')}}"></td>
 		</tr>
 		<tr>
 			<td>Password</td>
-			<td><input type="Password" name="password"></td>
+			<td><input type="Password" name="password" value="{{old('password')}}"></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -26,5 +26,9 @@
 	</form>
 	<a href="/register">Signup</a><br><br>
 	{{session('msg')}}
+
+	@foreach ($errors->all() as $error)
+		{{$error}}<br>
+	@endforeach
 </body>
 </html>
